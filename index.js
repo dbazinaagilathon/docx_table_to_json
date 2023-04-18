@@ -36,8 +36,6 @@ const concatTextElements = (textGroup) => {
           if (textGroup[RUNE]) {
             if (Array.isArray(textGroup[RUNE])) {
               textGroup[RUNE].forEach((textContent) => {
-                //   const addedText = textContent[TEXT] && typeof textContent[TEXT] === 'string' ? textContent[TEXT] : " ";
-                //   text += addedText;
                 if (
                   textContent[TEXT] &&
                   typeof textContent[TEXT] === "string"
@@ -61,8 +59,6 @@ const concatTextElements = (textGroup) => {
         if (textGroup[RUNE]) {
           if (Array.isArray(textGroup[RUNE])) {
             textGroup[RUNE].forEach((textContent) => {
-              //   const addedText = textContent[TEXT] && typeof textContent[TEXT] === 'string' ? textContent[TEXT] : " ";
-              //   text += addedText;
               if (textContent[TEXT] && typeof textContent[TEXT] === "string") {
                 text += textContent[TEXT];
               } else if (
@@ -125,18 +121,6 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
     );
     const table = json["w:document"]["w:body"][TABLE][TABLE_ROW];
     table.slice(1).forEach((row) => {
-      /**
-       * Object containing the data for each row in the table
-       * @type {{
-       * stepName: string, shortQuestionText: string, title: string,
-       * screenText: string,
-       * stepType: string,
-       * answerValues: string | string[],
-       * responseValues: string | string[],
-       * branchingLogic: string,
-       * additionalDetails: string
-       * }}
-       */
       const rowData = {
         stepName: "",
         shortQuestionText: "",
@@ -155,7 +139,6 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
             row[TABLE_CELL][index][PARAGRAPH]
           );
         } else {
-          // if (row[TABLE_CELL][index][PARAGRAPH][RUNE]) return rowData[field] = "";
           if (!Array.isArray(row[TABLE_CELL][index][PARAGRAPH][RUNE])) {
             if (
               typeof row[TABLE_CELL][1][PARAGRAPH][RUNE][TEXT] === "object" &&
