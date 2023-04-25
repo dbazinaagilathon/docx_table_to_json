@@ -1,983 +1,936 @@
 {
-  "pages": [
-    {
-      "1": {
-        "stepName": "Instruction",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "SF-36v2® Health Survey © 1992, 2000, 2010, 2012 Medical Outcomes Trust and QualityMetric Incorporated.All rights reserved.SF-36v2® is a registered trademark of Medical Outcomes Trust. (SF-36v2® Health Survey Acute, United States (English))",
-        "stepType": "Instruction",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text to be center aligned. "
-      }
+  "reviewVerbiage": "Please review your responses before you submit this form. If you see a response that you wish to change, select 'edit'.",
+  "button": {
+    "next": "Next",
+    "edit": "edit",
+    "back": "Back",
+    "start": "Start"
+  },
+  "pages": {
+    "1": {
+      "stepName": "Instruction",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "SF-36v2® Health Survey © 1992, 2000, 2010, 2012 Medical Outcomes Trust and QualityMetric Incorporated.All rights reserved.SF-36v2® is a registered trademark of Medical Outcomes Trust. (SF-36v2® Health Survey Acute, United States (English))",
+      "stepType": "Instruction",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text to be center aligned. "
     },
-    {
-      "2": {
-        "stepName": "Instruction2",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "Your Health and Well-BeingThis survey asks for your views about your health. This information will help keep track of how you feel and how well you are able to do your usual activities. Thank you for completing this survey!For each of the following questions, please select the one response that best describes your answer.",
-        "stepType": "Instruction",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": "“Your Health and Well- Being” to be center aligned. Follow screen text left aligned. "
-      }
+    "2": {
+      "stepName": "Instruction 2",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "Your Health and Well-Being<br/>This survey asks for your views about your health. This information will help keep track of how you feel and how well you are able to do your usual activities. Thank you for completing this survey!<br/>For each of the following questions, please select the one response that best describes your answer.",
+      "stepType": "Instruction",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": "“Your Health and Well- Being” to be center aligned. Follow screen text left aligned. "
     },
-    {
-      "3": {
-        "stepName": "SF36401",
-        "shortQuestionText": "SF364-In General You Say Your Health Is",
-        "title": "N/A",
-        "screenText": "In general, would you say your health is:",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Excellent",
-          "Very good",
-          "Good",
-          "Fair",
-          "Poor"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "3": {
+      "stepName": "SF36401",
+      "shortQuestionText": "SF364-In General You Say Your Health Is",
+      "title": "N/A",
+      "screenText": "In general, would you say your health is:",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Excellent",
+        "Very good",
+        "Good",
+        "Fair",
+        "Poor"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 0
     },
-    {
-      "4": {
-        "stepName": "SF36402",
-        "shortQuestionText": "SF364-Comp Week Ago Rate Gen Health Now",
-        "title": "N/A",
-        "screenText": "Compared to one week ago, how would you rate your health in general now?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Much better now than one week ago",
-          "Somewhat better now than one week ago",
-          "About the same as one week ago",
-          "Somewhat worse now than one week ago",
-          "Much worse now than one week ago"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "4": {
+      "stepName": "SF36402",
+      "shortQuestionText": "SF364-Comp Week Ago Rate Gen Health Now",
+      "title": "N/A",
+      "screenText": "<u>Compared to one <u/><u>week<u/><u> ago<u/>, how would you rate your health in general <u>now<u/>?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Much better now than one week ago",
+        "Somewhat better now than one week ago",
+        "About the same as one week ago",
+        "Somewhat worse now than one week ago",
+        "Much worse now than one week ago"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 1
     },
-    {
-      "5": {
-        "stepName": "Instruction3",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "[object Object]Does your health now limit you in these activities? If so, how much?",
-        "stepType": "Instruction",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text to be left aligned. "
-      }
+    "5": {
+      "stepName": "Instruction 3",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "The following questions are about activities you might do during a typical day. <br/>Does <u>your health now limit you<u/> in these activities? If so, how much?",
+      "stepType": "Instruction",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text to be left aligned. "
     },
-    {
-      "6": {
-        "stepName": "SF36403A",
-        "shortQuestionText": "SF364-Limit Vigorous Activities",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in vigorous activities, such as running, lifting heavy objects, participating in strenuous sports? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "6": {
+      "stepName": "SF36403A",
+      "shortQuestionText": "SF364-Limit Vigorous Activities",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in <u>vigorous activities<u/>, such as running, lifting heavy objects, participating in strenuous sports? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 2
     },
-    {
-      "7": {
-        "stepName": "SF36403B",
-        "shortQuestionText": "SF364-Limit Moderate Activities",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in moderate activities, such as moving a table, pushing a vacuum cleaner, bowling, or playing golf? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "7": {
+      "stepName": "SF36403B",
+      "shortQuestionText": "SF364-Limit Moderate Activities",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in <u>moderate activities<u/>, such as moving a table, pushing a vacuum cleaner, bowling, or playing golf? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 3
     },
-    {
-      "8": {
-        "stepName": "SF36403C",
-        "shortQuestionText": "SF364-Limit Lifting or Carrying",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in lifting or carrying groceries? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "8": {
+      "stepName": "SF36403C",
+      "shortQuestionText": "SF364-Limit Lifting or Carrying",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in lifting or carrying groceries? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 4
     },
-    {
-      "9": {
-        "stepName": "SF36403D",
-        "shortQuestionText": "SF364-Limit Climbing Several Flights",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in climbing several flights of stairs? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "9": {
+      "stepName": "SF36403D",
+      "shortQuestionText": "SF364-Limit Climbing Several Flights",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in climbing <u>several<u/> flights of stairs? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 5
     },
-    {
-      "10": {
-        "stepName": "SF36403E",
-        "shortQuestionText": "SF364-Limit Climbing One Flight Stairs",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in climbing one flight of stairs? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "10": {
+      "stepName": "SF36403E",
+      "shortQuestionText": "SF364-Limit Climbing One Flight Stairs",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in climbing <u>one<u/> flight of stairs? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 6
     },
-    {
-      "11": {
-        "stepName": "SF36403F",
-        "shortQuestionText": "SF364-Limit Bending/Kneeling/Stooping",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in bending, kneeling, or stooping? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "11": {
+      "stepName": "SF36403F",
+      "shortQuestionText": "SF364-Limit Bending/Kneeling/Stooping",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in bending, kneeling, or stooping? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 7
     },
-    {
-      "12": {
-        "stepName": "SF36403G",
-        "shortQuestionText": "SF364-Limit Walking More Than a Mile",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in walking more than a mile? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "12": {
+      "stepName": "SF36403G",
+      "shortQuestionText": "SF364-Limit Walking More Than a Mile",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in walking <u>more than a <u/><u>mile<u/>? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 8
     },
-    {
-      "13": {
-        "stepName": "SF36403H",
-        "shortQuestionText": "SF364-Limit Walking Several Hundred Yds",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in walking several hundred yards? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "13": {
+      "stepName": "SF36403H",
+      "shortQuestionText": "SF364-Limit Walking Several Hundred Yds",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in walking <u>several hundred <u/><u>yards<u/>? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 9
     },
-    {
-      "14": {
-        "stepName": "SF36403I",
-        "shortQuestionText": "SF364-Limit Walking One Hundred Yards",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in walking one hundred yards? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "14": {
+      "stepName": "SF36403I",
+      "shortQuestionText": "SF364-Limit Walking One Hundred Yards",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in walking <u>one hundred <u/><u>yards<u/>? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 10
     },
-    {
-      "15": {
-        "stepName": "SF36403J",
-        "shortQuestionText": "SF364-Limit Bathing or Dressing Yourself",
-        "title": "N/A",
-        "screenText": "Does your health now limit you in bathing or dressing yourself? If so, how much?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Yes, limited a lot",
-          "Yes, limited a little",
-          "No, not limited at all"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "15": {
+      "stepName": "SF36403J",
+      "shortQuestionText": "SF364-Limit Bathing or Dressing Yourself",
+      "title": "N/A",
+      "screenText": "Does <u>your health now limit you<u/> in bathing or dressing yourself? If so, how much?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Yes, limited a lot",
+        "Yes, limited a little",
+        "No, not limited at all"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 11
     },
-    {
-      "16": {
-        "stepName": "Instruction4",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "During the past week, how much of the time have you had any of the following problems with your work or other regular daily activities as a result of your physical health?",
-        "stepType": "Instruction",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text to be center aligned. "
-      }
+    "16": {
+      "stepName": "Instruction 4",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you had any of the following problems with your work or other regular daily activities <u>as a result of your physical health<u/>?",
+      "stepType": "Instruction",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text to be center aligned. "
     },
-    {
-      "17": {
-        "stepName": "SF36404A",
-        "shortQuestionText": "SF364-Physical: Cut Down Time on Work",
-        "title": "N/A",
-        "screenText": "During the past week, how much of the time have you cut down on the amount of time you spent on work or other activities as a result of your physical health?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "17": {
+      "stepName": "SF36404A",
+      "shortQuestionText": "SF364-Physical: Cut Down Time on Work",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you cut down on the <u>amount of time<u/> you spent on work or other activities <u>as a result of your physical health<u/>?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 12
     },
-    {
-      "18": {
-        "stepName": "SF36404B",
-        "shortQuestionText": "SF364-Physical: Accomplished Less",
-        "title": "N/A",
-        "screenText": "During the past week, how much of the time have you accomplished less than you would like as a result of your physical health?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "18": {
+      "stepName": "SF36404B",
+      "shortQuestionText": "SF364-Physical: Accomplished Less",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you <u>accomplished less<u/> than you would like <u>as a result of your physical health<u/>?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 13
     },
-    {
-      "19": {
-        "stepName": "SF36404C",
-        "shortQuestionText": "SF364-Physical: Limited Kind of Work",
-        "title": "N/A",
-        "screenText": "During the past week, how much of the time were you limited in the kind of work or other activities as a result of your physical health?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "19": {
+      "stepName": "SF36404C",
+      "shortQuestionText": "SF364-Physical: Limited Kind of Work",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/><u>, <u/>how much of the time were you limited in the <u>kind<u/> of work or other activities <u>as a result of your physical health<u/>?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 14
     },
-    {
-      "20": {
-        "stepName": "SF36404D",
-        "shortQuestionText": "SF364-Physical: Difficulty Perform Work",
-        "title": "N/A",
-        "screenText": "During the past week, how much of the time have you had difficulty performing the work or other activities as a result of your physical health (for example, it took extra effort)?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "20": {
+      "stepName": "SF36404D",
+      "shortQuestionText": "SF364-Physical: Difficulty Perform Work",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you had <u>difficulty<u/> performing the work or other activities <u>as a result of your physical health<u/> (for example, it took extra effort)?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 15
     },
-    {
-      "21": {
-        "stepName": "Instruction5",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "During the past week, how much of the time have you had any of the following problems with your work or other regular daily activities as a result of any emotionalproblems (such as feeling depressed or anxious)?",
-        "stepType": "Instruction",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text to be center aligned. "
-      }
+    "21": {
+      "stepName": "Instruction 5",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you had any of the following problems with your work or other regular daily activities <u>as a result of any emotional<u/> <u>problems<u/> (such as feeling depressed or anxious)?",
+      "stepType": "Instruction",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text to be center aligned. "
     },
-    {
-      "22": {
-        "stepName": "SF36405A",
-        "shortQuestionText": "SF364-Emotional: Cut Down Time on Work",
-        "title": "N/A",
-        "screenText": "During the past week,how much of the time have you cut down on the amount of time you spent on work or other activities as a result of any emotional problems (such as feeling depressed or anxious)?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "22": {
+      "stepName": "SF36405A",
+      "shortQuestionText": "SF364-Emotional: Cut Down Time on Work",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you cut down on the <u>amount of time<u/> you spent on work or other activities <u>as a result of any emotional problems <u/>(such as feeling depressed or anxious)?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 16
     },
-    {
-      "23": {
-        "stepName": "SF36405B",
-        "shortQuestionText": "SF364-Emotional: Accomplished Less",
-        "title": "N/A",
-        "screenText": "During the past week,how much of the time have you accomplished less than you would like as a result of any emotional problems (such as feeling depressed or anxious)?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "23": {
+      "stepName": "SF36405B",
+      "shortQuestionText": "SF364-Emotional: Accomplished Less",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you <u>accomplished less<u/> than you would like <u>as a result of any emotional problems <u/>(such as feeling depressed or anxious)?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 17
     },
-    {
-      "24": {
-        "stepName": "SF36405C",
-        "shortQuestionText": "SF364-Emotional: Did Work Less Carefully",
-        "title": "N/A",
-        "screenText": "During the past week,how much of the time have you done work or other activities less carefully than usualas a result of any emotional problems (such as feeling depressed or anxious)?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "24": {
+      "stepName": "SF36405C",
+      "shortQuestionText": "SF364-Emotional: Did Work Less Carefully",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much of the time have you done work or other activities <u>less carefully than usual<u/> <u>as a <u/><u>result of any emotional problems <u/>(such as feeling depressed or anxious<u>)<u/>?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 18
     },
-    {
-      "25": {
-        "stepName": "SF36406",
-        "shortQuestionText": "SF364-Extent Phys/Emotional Interfered",
-        "title": "N/A",
-        "screenText": "During the past week, to what extent has your physical health or emotional problems interfered with your normal social activities with family, friends, neighbors, or groups?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Not at all",
-          "Slightly",
-          "Moderately",
-          "Quite a bit",
-          "Extremely"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "25": {
+      "stepName": "SF36406",
+      "shortQuestionText": "SF364-Extent Phys/Emotional Interfered",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, to what extent has your physical health or emotional problems interfered with your normal social activities with family, friends, neighbors, or groups?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Not at all",
+        "Slightly",
+        "Moderately",
+        "Quite a bit",
+        "Extremely"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 19
     },
-    {
-      "26": {
-        "stepName": "SF36407",
-        "shortQuestionText": "SF364-How Much Bodily Pain Have You Had",
-        "title": "N/A",
-        "screenText": "How much bodily pain have you had during the past week?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "None",
-          "Very mild",
-          "Mild",
-          "Moderate",
-          "Severe",
-          "Very severe"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "26": {
+      "stepName": "SF36407",
+      "shortQuestionText": "SF364-How Much Bodily Pain Have You Had",
+      "title": "N/A",
+      "screenText": "How much <u>bodily<u/> pain have you had during the <u>past <u/><u>week<u/>?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "None",
+        "Very mild",
+        "Mild",
+        "Moderate",
+        "Severe",
+        "Very severe"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 20
     },
-    {
-      "27": {
-        "stepName": "SF36408",
-        "shortQuestionText": "SF364-Pain Interfere With Normal Work",
-        "title": "N/A",
-        "screenText": "During the past week, how much did pain interfere with your normal work (including both work outside the home and housework)?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Not at all",
-          "A little bit",
-          "Moderately",
-          "Quite a bit",
-          "Extremely"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "27": {
+      "stepName": "SF36408",
+      "shortQuestionText": "SF364-Pain Interfere With Normal Work",
+      "title": "N/A",
+      "screenText": "During the <u>past <u/><u>week<u/>, how much did <u>pain<u/> interfere with your normal work (including both work outside the home and housework)?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Not at all",
+        "A little bit",
+        "Moderately",
+        "Quite a bit",
+        "Extremely"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 21
     },
-    {
-      "28": {
-        "stepName": "Instruction6",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "These questions are about how you feel and how things have been with you during the past week. For each question, please give the one answer that comes closest to the way you have been feeling.",
-        "stepType": "Instruction",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text to be center aligned"
-      }
+    "28": {
+      "stepName": "Instruction 6",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "These questions are about how you feel and how things have been with you <u>during the past <u/><u>week<u/>. For each question, please give the one answer that comes closest to the way you have been feeling.",
+      "stepType": "Instruction",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text to be center aligned"
     },
-    {
-      "29": {
-        "stepName": "SF36409A",
-        "shortQuestionText": "SF364-Did You Feel Full of Life",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week did you feel full of life?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "29": {
+      "stepName": "SF36409A",
+      "shortQuestionText": "SF364-Did You Feel Full of Life",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past <u/><u>week<u/> did you feel full of life?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 22
     },
-    {
-      "30": {
-        "stepName": "SF36409B",
-        "shortQuestionText": "SF364-Have You Been Very Nervous",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week have you been very nervous?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "30": {
+      "stepName": "SF36409B",
+      "shortQuestionText": "SF364-Have You Been Very Nervous",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past <u/><u>week<u/> have you been very nervous?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 23
     },
-    {
-      "31": {
-        "stepName": "SF36409C",
-        "shortQuestionText": "SF364-Felt Down Nothing Cheer You Up",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week have you felt so down in the dumps that nothing could cheer you up?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "31": {
+      "stepName": "SF36409C",
+      "shortQuestionText": "SF364-Felt Down Nothing Cheer You Up",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past <u/><u>week<u/> have you felt so down in the dumps that nothing could cheer you up?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 24
     },
-    {
-      "32": {
-        "stepName": "SF36409D",
-        "shortQuestionText": "SF364-Have You Felt Calm and Peaceful",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week have you felt calm and peaceful?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "32": {
+      "stepName": "SF36409D",
+      "shortQuestionText": "SF364-Have You Felt Calm and Peaceful",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past <u/><u>week<u/> have you felt calm and peaceful?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 25
     },
-    {
-      "33": {
-        "stepName": "SF36409E",
-        "shortQuestionText": "SF364-Did You Have a Lot of Energy",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week did you have a lot of energy?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "33": {
+      "stepName": "SF36409E",
+      "shortQuestionText": "SF364-Did You Have a Lot of Energy",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past <u/><u>week<u/> did you have a lot of energy?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 26
     },
-    {
-      "34": {
-        "stepName": "SF36409F",
-        "shortQuestionText": "SF364-You Felt Downhearted and Depressed",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week have you felt downhearted and depressed?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "34": {
+      "stepName": "SF36409F",
+      "shortQuestionText": "SF364-You Felt Downhearted and Depressed",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past <u/><u>week<u/> have you felt downhearted and depressed?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 27
     },
-    {
-      "35": {
-        "stepName": "SF36409G",
-        "shortQuestionText": "SF364-Did You Feel Worn Out",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week did you feel worn out?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "35": {
+      "stepName": "SF36409G",
+      "shortQuestionText": "SF364-Did You Feel Worn Out",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past <u/><u>week<u/> did you feel worn out?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 28
     },
-    {
-      "36": {
-        "stepName": "SF36409H",
-        "shortQuestionText": "SF364-Have You Been Happy",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week have you been happy?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "36": {
+      "stepName": "SF36409H",
+      "shortQuestionText": "SF364-Have You Been Happy",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past week<u/> have you been happy?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 29
     },
-    {
-      "37": {
-        "stepName": "SF36409I",
-        "shortQuestionText": "SF364-Did You Feel Tired",
-        "title": "N/A",
-        "screenText": "How much of the time during the past week did you feel tired?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "37": {
+      "stepName": "SF36409I",
+      "shortQuestionText": "SF364-Did You Feel Tired",
+      "title": "N/A",
+      "screenText": "How much of the time during the <u>past week<u/> did you feel tired?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 30
     },
-    {
-      "38": {
-        "stepName": "SF36410",
-        "shortQuestionText": "SF364-Time Phys/Emotional Interfered",
-        "title": "N/A",
-        "screenText": "During the past week, how much of the time has your physical health or emotional problems interfered with your social activities (like visiting with friends, relatives, etc.)?",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "All of the time",
-          "Most of the time",
-          "Some of the time",
-          "A little of the time",
-          "None of the time"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "38": {
+      "stepName": "SF36410",
+      "shortQuestionText": "SF364-Time Phys/Emotional Interfered",
+      "title": "N/A",
+      "screenText": "During the <u>past week<u/>, how much of the time has your <u>physical health or emotional problems<u/> interfered with your social activities (like visiting with friends, relatives, etc.)?",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "All of the time",
+        "Most of the time",
+        "Some of the time",
+        "A little of the time",
+        "None of the time"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 31
     },
-    {
-      "39": {
-        "stepName": "Instruction 7",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "How TRUE or FALSE is each of the following statements for you?",
-        "stepType": "Instruction",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text to be center aligned"
-      }
+    "39": {
+      "stepName": "Instruction 7",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "How TRUE or FALSE is <u>each<u/> of the following statements for you?",
+      "stepType": "Instruction",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text to be center aligned"
     },
-    {
-      "40": {
-        "stepName": "SF36411A",
-        "shortQuestionText": "SF364-Get Sick Little Easier Than Other",
-        "title": "N/A",
-        "screenText": "I seem to get sick a little easier than other people.",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Definitely true",
-          "Mostly true",
-          "Don't know",
-          "Mostly false",
-          "Definitely false"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "40": {
+      "stepName": "SF36411A",
+      "shortQuestionText": "SF364-Get Sick Little Easier Than Other",
+      "title": "N/A",
+      "screenText": "I seem to get sick a little easier than other people.",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Definitely true",
+        "Mostly true",
+        "Don't know",
+        "Mostly false",
+        "Definitely false"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 32
     },
-    {
-      "41": {
-        "stepName": "SF36411B",
-        "shortQuestionText": "SF364-I Am as Healthy as Anybody I Know",
-        "title": "N/A",
-        "screenText": "I am as healthy as anybody I know.",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Definitely true",
-          "Mostly true",
-          "Don't know",
-          "Mostly false",
-          "Definitely false"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "41": {
+      "stepName": "SF36411B",
+      "shortQuestionText": "SF364-I Am as Healthy as Anybody I Know",
+      "title": "N/A",
+      "screenText": "I am as healthy as anybody I know.",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Definitely true",
+        "Mostly true",
+        "Don't know",
+        "Mostly false",
+        "Definitely false"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 33
     },
-    {
-      "42": {
-        "stepName": "SF36411C",
-        "shortQuestionText": "SF364-I Expect My Health to Get Worse",
-        "title": "N/A",
-        "screenText": "I expect my health to get worse.",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Definitely true",
-          "Mostly true",
-          "Don't know",
-          "Mostly false",
-          "Definitely false"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "42": {
+      "stepName": "SF36411C",
+      "shortQuestionText": "SF364-I Expect My Health to Get Worse",
+      "title": "N/A",
+      "screenText": "I expect my health to get worse.",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Definitely true",
+        "Mostly true",
+        "Don't know",
+        "Mostly false",
+        "Definitely false"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 34
     },
-    {
-      "43": {
-        "stepName": "SF36411D",
-        "shortQuestionText": "SF364-My Health is Excellent",
-        "title": "N/A",
-        "screenText": "My health is excellent.",
-        "stepType": "Text Choice",
-        "answerValues": [
-          "Definitely true",
-          "Mostly true",
-          "Don't know",
-          "Mostly false",
-          "Definitely false"
-        ],
-        "responseValues": [
-          "1",
-          "2",
-          "3",
-          "4",
-          "5"
-        ],
-        "branchingLogic": "Default",
-        "additionalDetails": "Screen text and response values to be center aligned."
-      }
+    "43": {
+      "stepName": "SF36411D",
+      "shortQuestionText": "SF364-My Health is Excellent",
+      "title": "N/A",
+      "screenText": "My health is excellent.",
+      "stepType": "Text Choice",
+      "answerValues": [
+        "Definitely true",
+        "Mostly true",
+        "Don't know",
+        "Mostly false",
+        "Definitely false"
+      ],
+      "responseValues": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "branchingLogic": "Default",
+      "additionalDetails": "Screen text and response values to be center aligned.",
+      "mappingKey": 35
     },
-    {
-      "44": {
-        "stepName": "Review",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "Please review your responses before you submit this form. If you see a response that you wish to change, select ‘edit’.",
-        "stepType": "Review",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "Default",
-        "additionalDetails": ""
-      }
+    "44": {
+      "stepName": "Review",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "Please review your responses before you submit this form. If you see a response that you wish to change, select ‘edit’.",
+      "stepType": "Review",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "Default",
+      "additionalDetails": ""
     },
-    {
-      "45": {
-        "stepName": "Completion",
-        "shortQuestionText": "N/A",
-        "title": "N/A",
-        "screenText": "Please go back if you wish to review or change any of your responses.[object Object][object Object]Thank you.[object Object]",
-        "stepType": "Completion",
-        "answerValues": "N/A",
-        "responseValues": "N/A",
-        "branchingLogic": "EXIT TASK",
-        "additionalDetails": ""
-      }
+    "45": {
+      "stepName": "Completion",
+      "shortQuestionText": "N/A",
+      "title": "N/A",
+      "screenText": "Please go back if you wish to review or change any of your responses.<br/>If you are happy with your responses, please select 'Done' to save and submit them. <br/>Once you select 'Done', you will not be able to go back to review or change your responses. <br/>Thank you.<br/><<check mark>> ",
+      "stepType": "Completion",
+      "answerValues": "N/A",
+      "responseValues": "N/A",
+      "branchingLogic": "EXIT TASK",
+      "additionalDetails": ""
     }
-  ]
+  }
 }
