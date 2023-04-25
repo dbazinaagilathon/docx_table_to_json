@@ -7,14 +7,21 @@ const path = require("path");
 const filePath = process.argv[2];
 
 const readFileAsync = promisify(fs.readFile);
-
 const TABLE = "w:tbl";
 const TABLE_CELL = "w:tc";
 const TABLE_ROW = "w:tr";
 const PARAGRAPH = "w:p";
 const RUNE = "w:r";
 const TEXT = "w:t";
-
+const UNDERLINE = "w:u"
+const BOLD = "w:b"
+const RUNPROP = "w:rPr"
+const VALUE = "w:val"
+const reviewVerbiageText = "Please review your responses before you submit this form. If you see a response that you wish to change, select 'edit'."
+const buttonText = { next: "Next",edit: "edit",back: "Back",start: "Start" }
+const objectMapping = { reviewVerbiage: reviewVerbiageText, button: buttonText, pages: {} };
+const formStepsMapping = { formSteps: []}
+let mappingKey = 0
 async function convertDocxToJson(docxFilePath) {
   const zip = new JSZip();
   const content = await readFileAsync(docxFilePath);
@@ -24,9 +31,38 @@ async function convertDocxToJson(docxFilePath) {
   const result = await parser.parseStringPromise(documentXml);
   return result;
 }
-
-const objectMapping = { pages: [] };
-
+function checkBoldOrUnderline(textContent, textContentBody)
+{
+  const underline = textContent[RUNPROP] && textContent[RUNPROP][UNDERLINE] && textContent[RUNPROP][UNDERLINE]["$"]&& textContent[RUNPROP][UNDERLINE]["$"][VALUE]=="single";
+  const bold = textContent[RUNPROP]&& textContent[RUNPROP].hasOwnProperty(BOLD)
+  let text = ""
+  if(underline && bold){
+    text+=  "<b><u>"+textContentBody+"</u></b>"
+  }
+  else if(underline){
+    text+=  "<u>"+textContentBody+"<u/>"
+  }
+  else if(bold){
+    text+=  "<b>"+textContentBody+"<b/>"
+  }
+  else{
+    text+=  textContentBody;
+  }
+  return text
+}
+function checkTextSource(textContent, checkBold)
+{
+  let text = ""
+  if (textContent[TEXT] && typeof textContent[TEXT] === "string") {
+    text += checkBold ? checkBoldOrUnderline(textContent,textContent[TEXT]) : textContent[TEXT];
+  } else if (textContent[TEXT] &&typeof textContent[TEXT] === "object" &&textContent[TEXT]["_"]) {
+    text +=  checkBold ? checkBoldOrUnderline(textContent,textContent[TEXT]["_"]) : textContent[TEXT]["_"];
+  }
+  else if(textContent[TEXT] && textContent[TEXT]["$"] && textContent[TEXT]["$"]["xml:space"]){
+    text += " "
+  }
+  return text
+}
 const concatTextElements = (textGroup) => {
   let text = "";
   try {
@@ -36,18 +72,7 @@ const concatTextElements = (textGroup) => {
           if (textGroup[RUNE]) {
             if (Array.isArray(textGroup[RUNE])) {
               textGroup[RUNE].forEach((textContent) => {
-                if (
-                  textContent[TEXT] &&
-                  typeof textContent[TEXT] === "string"
-                ) {
-                  text += textContent[TEXT];
-                } else if (
-                  textContent[TEXT] &&
-                  typeof textContent[TEXT] === "object" &&
-                  textContent[TEXT]["_"]
-                ) {
-                  text += textContent[TEXT]["_"];
-                }
+                text+=checkTextSource(textContent, false)
               });
             } else {
               const textContent = textGroup[RUNE];
@@ -58,31 +83,29 @@ const concatTextElements = (textGroup) => {
       } else {
         if (textGroup[RUNE]) {
           if (Array.isArray(textGroup[RUNE])) {
+            if(textGroup[RUNE].every(obj => !obj.hasOwnProperty('w:t')))
+            {
+              text+= "<br/>"
+            }
             textGroup[RUNE].forEach((textContent) => {
-              if (textContent[TEXT] && typeof textContent[TEXT] === "string") {
-                text += textContent[TEXT];
-              } else if (
-                textContent[TEXT] &&
-                typeof textContent[TEXT] === "object" &&
-                textContent[TEXT]["_"]
-              ) {
-                text += textContent[TEXT]["_"];
-              }
+            text+=checkTextSource(textContent, true)
             });
           } else {
-            const textContent = textGroup[RUNE];
-            text += textContent[TEXT];
+            text+=checkTextSource(textGroup[RUNE], false)
           }
+        }        
+        else{
+          text+= "<br/>"
         }
       }
     });
+    text = text.replace(/^(<br\/>)+|(<br\/>)+$/g, '') //erases break lines from the beginning or the end
     return text;
   } catch (error) {
     text = "********* FAILED ********";
     return text;
   }
 };
-
 const getArrayElements = (arrayOfQuestionsOrAnswers) => {
   let array = [];
   try {
@@ -93,17 +116,12 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
         } else {
           let addedText = "";
           textGroup[RUNE].forEach((textContent) => {
-            if (textContent[TEXT] && typeof textContent[TEXT] === "string") {
-              addedText += textContent[TEXT];
-            } else if (
-              textContent[TEXT] &&
-              typeof textContent[TEXT] === "object" &&
-              textContent[TEXT]["_"]
-            ) {
-              addedText += textContent[TEXT]["_"];
-            }
+            addedText+= checkTextSource(textContent, false)
           });
-          array.push(addedText);
+          if(addedText)
+          {
+            array.push(addedText);
+          }
         }
       }
     });
@@ -113,13 +131,36 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
     return array;
   }
 };
-
+function createFormSteps(object)
+{
+  const step =  {
+    mappingKey : object.mappingKey,
+    name : object.stepName,
+    cDash : object.shortQuestionText,
+    type : object.stepType.toLowerCase().replace(/\s/g, "_")
+  }
+  if(step.type ==="text_choice")
+  {
+    step.choices = []
+    object.answerValues.forEach(value => {
+      step.choices.push({text:value, value: object.responseValues[step.choices.length]})
+    });
+  }
+  else if(step.type ==="numeric")
+  {
+    const nums = object.responseValues.split("-").map(Number);
+    step.min = nums[0]
+    step.max = nums[1]
+  }
+  return step
+}
 (async () => {
   try {
     const json = await convertDocxToJson(
       path.join(__dirname, "./", "spec", `${filePath}.docx`)
     );
     const table = json["w:document"]["w:body"][TABLE][TABLE_ROW];
+    let count = 1
     table.slice(1).forEach((row) => {
       const rowData = {
         stepName: "",
@@ -226,8 +267,7 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
         branchingLogic,
         additionalDetails,
       } = rowData;
-      objectMapping.pages.push({
-        [row[TABLE_CELL][0][PARAGRAPH][RUNE][TEXT]]: {
+      objectMapping.pages[count]= {
           stepName,
           shortQuestionText,
           title,
@@ -237,14 +277,19 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
           responseValues,
           branchingLogic,
           additionalDetails,
-        },
-      });
+        }
+      if(objectMapping.pages[count].shortQuestionText !== "N/A")
+      {
+        objectMapping.pages[count].mappingKey = mappingKey
+        const step = createFormSteps(objectMapping.pages[count])
+        formStepsMapping.formSteps.push(step)
+        mappingKey += 1
+      }
+      count +=1
     });
     JSON.stringify(objectMapping);
-    fs.writeFileSync(
-      path.join(__dirname, "./", "spec", `${filePath}.json`),
-      JSON.stringify(objectMapping, null, 2)
-    );
+    fs.writeFileSync(path.join(__dirname, "./", "spec", `${filePath}.json`),JSON.stringify(objectMapping, null, 2));
+    fs.writeFileSync(path.join(__dirname, "./", "spec", `${filePath}FormSteps.json`),JSON.stringify(formStepsMapping, null, 2));
   } catch (error) {
     console.error(error);
   }
