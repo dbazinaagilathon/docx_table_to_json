@@ -17,11 +17,16 @@ const UNDERLINE = "w:u"
 const BOLD = "w:b"
 const RUNPROP = "w:rPr"
 const VALUE = "w:val"
+const DOCUMENT = "w:document"
+const BODY = "w:body"
+const TEXT_CHOICE = "text_choice"
+const NUMERIC = "numeric"
 const reviewVerbiageText = "Please review your responses before you submit this form. If you see a response that you wish to change, select 'edit'."
 const buttonText = { next: "Next",edit: "edit",back: "Back",start: "Start" }
 const objectMapping = { reviewVerbiage: reviewVerbiageText, button: buttonText, pages: {} };
 const formStepsMapping = { formSteps: []}
 let mappingKey = 0
+
 async function convertDocxToJson(docxFilePath) {
   const zip = new JSZip();
   const content = await readFileAsync(docxFilePath);
@@ -50,13 +55,13 @@ function checkBoldOrUnderline(textContent, textContentBody)
   }
   return text
 }
-function checkTextSource(textContent, checkBold)
+function checkTextSource(textContent, checkStyle)
 {
   let text = ""
   if (textContent[TEXT] && typeof textContent[TEXT] === "string") {
-    text += checkBold ? checkBoldOrUnderline(textContent,textContent[TEXT]) : textContent[TEXT];
+    text += checkStyle ? checkBoldOrUnderline(textContent,textContent[TEXT]) : textContent[TEXT];
   } else if (textContent[TEXT] &&typeof textContent[TEXT] === "object" &&textContent[TEXT]["_"]) {
-    text +=  checkBold ? checkBoldOrUnderline(textContent,textContent[TEXT]["_"]) : textContent[TEXT]["_"];
+    text +=  checkStyle ? checkBoldOrUnderline(textContent,textContent[TEXT]["_"]) : textContent[TEXT]["_"];
   }
   else if(textContent[TEXT] && textContent[TEXT]["$"] && textContent[TEXT]["$"]["xml:space"]){
     text += " "
@@ -83,7 +88,7 @@ const concatTextElements = (textGroup) => {
       } else {
         if (textGroup[RUNE]) {
           if (Array.isArray(textGroup[RUNE])) {
-            if(textGroup[RUNE].every(obj => !obj.hasOwnProperty('w:t')))
+            if(textGroup[RUNE].every(obj => !obj.hasOwnProperty(TEXT)))
             {
               text+= "<br/>"
             }
@@ -139,14 +144,14 @@ function createFormSteps(object)
     cDash : object.shortQuestionText,
     type : object.stepType.toLowerCase().replace(/\s/g, "_")
   }
-  if(step.type ==="text_choice")
+  if(step.type === TEXT_CHOICE)
   {
     step.choices = []
     object.answerValues.forEach(value => {
       step.choices.push({text:value, value: object.responseValues[step.choices.length]})
     });
   }
-  else if(step.type ==="numeric")
+  else if(step.type === NUMERIC)
   {
     const nums = object.responseValues.split("-").map(Number);
     step.min = nums[0]
@@ -159,7 +164,7 @@ function createFormSteps(object)
     const json = await convertDocxToJson(
       path.join(__dirname, "./", "spec", `${filePath}.docx`)
     );
-    const table = json["w:document"]["w:body"][TABLE][TABLE_ROW];
+    const table = json[DOCUMENT][BODY][TABLE][0][TABLE_ROW];
     let count = 1
     table.slice(1).forEach((row) => {
       const rowData = {
