@@ -20,9 +20,8 @@ const DOCUMENT = "w:document"
 const BODY = "w:body"
 const TEXT_CHOICE = "text_choice"
 const NUMERIC = "numeric"
-const reviewVerbiageText = "Please review your responses before you submit this form. If you see a response that you wish to change, select 'edit'."
 const buttonText = { next: "Next",edit: "edit",back: "Back",start: "Start" }
-const objectMapping = { title: "", reviewVerbiage: reviewVerbiageText, button: buttonText, pages: {} };
+const objectMapping = { title: "", reviewVerbiage: "", button: buttonText, pages: {} };
 const formStepsMapping = { formSteps: []}
 let mappingKey = 0
 
@@ -35,7 +34,6 @@ async function findDocxFileInDirectory(directoryPath) {
     throw new Error(`No DOCX files found in directory ${directoryPath}`);
   }
 }
-
 async function convertDocxToJson(docxFilePath) {
   const zip = new JSZip();
   const content = await readFileAsync(docxFilePath);
@@ -171,22 +169,21 @@ function createFormSteps(object, mappingKey)
 }
 function mappingToJson(rowData)
 {
-  switch(rowData.stepName)
-  {
-    case "Copyright":
-      objectMapping.title = rowData.title
-      return { title:rowData.title, copyright: rowData.stepName }
-    case "Instruction": 
-      return { messages: rowData.screenText }
-    default:
-      return { question: rowData.screenText, answers: rowData.answerValues }
+  if(rowData.stepName.includes("Copyright")){
+    objectMapping.title = rowData.title
+    return { title:rowData.title, copyright: rowData.stepName + " " + rowData.screenText }
+  }
+  else if (rowData.stepName.includes("Instruction")){
+    return { messages: rowData.screenText }
+  }
+  else{
+    return { mappingKey: "", question: rowData.screenText, answers: rowData.answerValues }
   }
 }
 (async () => {
   try {
     const directoryPath = path.join(__dirname, "./", "spec")
     const docxFilePath = await findDocxFileInDirectory(directoryPath);
-
     docxFilePath.forEach(async(doc)=>{
       const json = await convertDocxToJson(path.join(directoryPath, doc));
       const table = json[DOCUMENT][BODY][TABLE][0][TABLE_ROW];
@@ -285,8 +282,16 @@ function mappingToJson(rowData)
           arrayExtractor(6, "answerValues");
           arrayExtractor(7, "responseValues");
         }
+        if(rowData.stepType.toLowerCase().includes("review"))
+        {
+          objectMapping.reviewVerbiage = rowData.screenText
+          return;
+        }
+        if(rowData.stepType.toLowerCase().includes("completion")){
+          return
+        }
         objectMapping.pages[count]= mappingToJson(rowData)
-        if(rowData.shortQuestionText !== "N/A" && rowData !== "Instruction")
+        if(rowData.shortQuestionText !== "N/A" && !rowData.stepType.toLowerCase().includes("instruction"))
         {
           objectMapping.pages[count].mappingKey = mappingKey.toString()
           formStepsMapping.formSteps.push(createFormSteps(rowData, mappingKey.toString()))
@@ -296,7 +301,7 @@ function mappingToJson(rowData)
       });
       JSON.stringify(objectMapping);
       fs.writeFileSync(path.join(directoryPath,doc.replace(".docx", ".json")),JSON.stringify(objectMapping, null, 2));
-      fs.writeFileSync(path.join(directoryPath, "formSteps"+ doc.replace(".docx", ".json")),JSON.stringify(objectMapping, null, 2));
+      fs.writeFileSync(path.join(directoryPath, "formSteps"+ doc.replace(".docx", ".json")),JSON.stringify(formStepsMapping, null, 2));
     })
   } catch (error) {
     console.error(error);
