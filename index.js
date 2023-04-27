@@ -21,7 +21,7 @@ const BODY = "w:body"
 const TEXT_CHOICE = "text_choice"
 const NUMERIC = "numeric"
 const buttonText = { next: "Next",edit: "edit",back: "Back",start: "Start" }
-const objectMapping = { title: "", reviewVerbiage: "", button: buttonText, pages: {} };
+
 
 async function findDocxFileInDirectory(directoryPath) {
   const files = await fsp.readdir(directoryPath);
@@ -165,7 +165,7 @@ function createFormSteps(object, mappingKey)
   }
   return step
 }
-function mappingToJson(rowData)
+function mappingToJson(rowData, objectMapping)
 {
   if(rowData.stepName.includes("Copyright")){
     objectMapping.title = rowData.title
@@ -183,6 +183,7 @@ function mappingToJson(rowData)
     const directoryPath = path.join(__dirname, "./", "spec")
     const docxFilePath = await findDocxFileInDirectory(directoryPath);
     docxFilePath.forEach(async(doc)=>{
+      const objectMapping = { title: "", reviewVerbiage: "", button: buttonText, pages: {} };
       const formStepsMapping = { formSteps: []}
       let mappingKey = 0
       let count = 1
@@ -290,7 +291,7 @@ function mappingToJson(rowData)
         if(rowData.stepType.toLowerCase().includes("completion")){
           return
         }
-        objectMapping.pages[count]= mappingToJson(rowData)
+        objectMapping.pages[count]= mappingToJson(rowData, objectMapping)
         if(rowData.shortQuestionText !== "N/A" && !rowData.stepType.toLowerCase().includes("instruction"))
         {
           objectMapping.pages[count].mappingKey = mappingKey.toString()
