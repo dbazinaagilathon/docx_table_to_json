@@ -23,7 +23,7 @@ const TEXT_CHOICE = "text_choice"
 const NUMERIC = "numeric"
 const reviewVerbiageText = "Please review your responses before you submit this form. If you see a response that you wish to change, select 'edit'."
 const buttonText = { next: "Next",edit: "edit",back: "Back",start: "Start" }
-const objectMapping = { reviewVerbiage: reviewVerbiageText, button: buttonText, pages: {} };
+const objectMapping = { title: "", reviewVerbiage: reviewVerbiageText, button: buttonText, pages: {} };
 const formStepsMapping = { formSteps: []}
 let mappingKey = 0
 
@@ -136,28 +136,42 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
     return array;
   }
 };
-function createFormSteps(object)
+function createFormSteps(object, mappingKey)
 {
   const step =  {
-    mappingKey : object.mappingKey,
+    mappingKey : mappingKey,
     name : object.stepName,
     cDash : object.shortQuestionText,
     type : object.stepType.toLowerCase().replace(/\s/g, "_")
   }
-  if(step.type === TEXT_CHOICE)
+  if(step.type.includes(TEXT_CHOICE))
   {
     step.choices = []
     object.answerValues.forEach(value => {
       step.choices.push({text:value, value: object.responseValues[step.choices.length]})
     });
+    step.type = TEXT_CHOICE
   }
-  else if(step.type === NUMERIC)
+  else if(step.type.includes(NUMERIC))
   {
     const nums = object.responseValues.split("-").map(Number);
     step.min = nums[0]
     step.max = nums[1]
   }
   return step
+}
+function mappingToJson(rowData)
+{
+  switch(rowData.stepName)
+  {
+    case "Copyright":
+      objectMapping.title = rowData.title
+      return { title:rowData.title, copyright: rowData.stepName }
+    case "Instruction": 
+      return { messages: rowData.screenText }
+    default:
+      return { question: rowData.screenText, answers: rowData.answerValues }
+  }
 }
 (async () => {
   try {
@@ -260,34 +274,11 @@ function createFormSteps(object)
         arrayExtractor(6, "answerValues");
         arrayExtractor(7, "responseValues");
       }
-
-      const {
-        stepName,
-        shortQuestionText,
-        title,
-        screenText,
-        stepType,
-        answerValues,
-        responseValues,
-        branchingLogic,
-        additionalDetails,
-      } = rowData;
-      objectMapping.pages[count]= {
-          stepName,
-          shortQuestionText,
-          title,
-          screenText,
-          stepType,
-          answerValues,
-          responseValues,
-          branchingLogic,
-          additionalDetails,
-        }
-      if(objectMapping.pages[count].shortQuestionText !== "N/A")
+      objectMapping.pages[count]= mappingToJson(rowData)
+      if(rowData.shortQuestionText !== "N/A" && rowData !== "Instruction")
       {
-        objectMapping.pages[count].mappingKey = mappingKey
-        const step = createFormSteps(objectMapping.pages[count])
-        formStepsMapping.formSteps.push(step)
+        objectMapping.pages[count].mappingKey = mappingKey.toString()
+        formStepsMapping.formSteps.push(createFormSteps(rowData, mappingKey.toString()))
         mappingKey += 1
       }
       count +=1
