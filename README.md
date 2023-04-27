@@ -7,10 +7,8 @@ The script is written in NodeJS and uses the following libraries:
   - "xml2js": "^0.4.23"
 
 The script is used as follows:
-    `node index.js <docx_file_without_extension>`
+    `node index.js`
 
-Example:
-    `node index.js example`
 
 The script will create a JSON file with the same name as the DOCX file.
 The docx file must be in the spec directory where the output will be created.

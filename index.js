@@ -1,10 +1,9 @@
 const fs = require("fs");
+const fsp = require("fs/promises");
 const JSZip = require("jszip");
 const { promisify } = require("util");
 const xml2js = require("xml2js");
 const path = require("path");
-
-const filePath = process.argv[2];
 
 const readFileAsync = promisify(fs.readFile);
 const TABLE = "w:tbl";
@@ -26,6 +25,16 @@ const buttonText = { next: "Next",edit: "edit",back: "Back",start: "Start" }
 const objectMapping = { title: "", reviewVerbiage: reviewVerbiageText, button: buttonText, pages: {} };
 const formStepsMapping = { formSteps: []}
 let mappingKey = 0
+
+async function findDocxFileInDirectory(directoryPath) {
+  const files = await fsp.readdir(directoryPath);
+  const docxFiles = files.filter(file => path.extname(file) === ".docx");
+  if (docxFiles.length > 0) {
+    return docxFiles;
+  } else {
+    throw new Error(`No DOCX files found in directory ${directoryPath}`);
+  }
+}
 
 async function convertDocxToJson(docxFilePath) {
   const zip = new JSZip();
@@ -175,117 +184,120 @@ function mappingToJson(rowData)
 }
 (async () => {
   try {
-    const json = await convertDocxToJson(
-      path.join(__dirname, "./", "spec", `${filePath}.docx`)
-    );
-    const table = json[DOCUMENT][BODY][TABLE][0][TABLE_ROW];
-    let count = 1
-    table.slice(1).forEach((row) => {
-      const rowData = {
-        stepName: "",
-        shortQuestionText: "",
-        title: "",
-        screenText: "",
-        stepType: "",
-        answerValues: "",
-        responseValues: "",
-        branchingLogic: "",
-        additionalDetails: "",
-      };
+    const directoryPath = path.join(__dirname, "./", "spec")
+    const docxFilePath = await findDocxFileInDirectory(directoryPath);
 
-      const textExtractor = (index, field) => {
-        if (Array.isArray(row[TABLE_CELL][index][PARAGRAPH])) {
-          rowData[field] = concatTextElements(
-            row[TABLE_CELL][index][PARAGRAPH]
-          );
-        } else {
-          if (!Array.isArray(row[TABLE_CELL][index][PARAGRAPH][RUNE])) {
-            if (
-              typeof row[TABLE_CELL][1][PARAGRAPH][RUNE][TEXT] === "object" &&
-              row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"]
-            ) {
-              rowData[field] =
-                row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"];
+    docxFilePath.forEach(async(doc)=>{
+      const json = await convertDocxToJson(path.join(directoryPath, doc));
+      const table = json[DOCUMENT][BODY][TABLE][0][TABLE_ROW];
+      let count = 1
+      table.slice(1).forEach((row) => {
+        const rowData = {
+          stepName: "",
+          shortQuestionText: "",
+          title: "",
+          screenText: "",
+          stepType: "",
+          answerValues: "",
+          responseValues: "",
+          branchingLogic: "",
+          additionalDetails: "",
+        };
+  
+        const textExtractor = (index, field) => {
+          if (Array.isArray(row[TABLE_CELL][index][PARAGRAPH])) {
+            rowData[field] = concatTextElements(
+              row[TABLE_CELL][index][PARAGRAPH]
+            );
+          } else {
+            if (!Array.isArray(row[TABLE_CELL][index][PARAGRAPH][RUNE])) {
+              if (
+                typeof row[TABLE_CELL][1][PARAGRAPH][RUNE][TEXT] === "object" &&
+                row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"]
+              ) {
+                rowData[field] =
+                  row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"];
+              } else {
+                if (row[TABLE_CELL][index][PARAGRAPH][RUNE]) {
+                  if (
+                    row[TABLE_CELL][index][PARAGRAPH][RUNE] &&
+                    row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT] &&
+                    typeof row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT] ===
+                      "string"
+                  ) {
+                    rowData[field] =
+                      row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT];
+                  } else {
+                    rowData[field] =
+                      row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"];
+                  }
+                }
+              }
             } else {
-              if (row[TABLE_CELL][index][PARAGRAPH][RUNE]) {
+              rowData[field] = concatTextElements([
+                row[TABLE_CELL][index][PARAGRAPH],
+              ]);
+            }
+          }
+        };
+  
+        const arrayExtractor = (index, field) => {
+          if (Array.isArray(row[TABLE_CELL][index][PARAGRAPH])) {
+            rowData[field] = getArrayElements(row[TABLE_CELL][index][PARAGRAPH]);
+          } else {
+            if (!Array.isArray(row[TABLE_CELL][index][PARAGRAPH][RUNE])) {
+              if (
+                typeof row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT] ===
+                  "object" &&
+                row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"]
+              ) {
+                rowData[field] =
+                  row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"];
+              } else {
                 if (
-                  row[TABLE_CELL][index][PARAGRAPH][RUNE] &&
-                  row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT] &&
                   typeof row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT] ===
-                    "string"
+                  "string"
                 ) {
-                  rowData[field] =
-                    row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT];
+                  rowData[field] = row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT];
                 } else {
                   rowData[field] =
                     row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"];
                 }
               }
-            }
-          } else {
-            rowData[field] = concatTextElements([
-              row[TABLE_CELL][index][PARAGRAPH],
-            ]);
-          }
-        }
-      };
-
-      const arrayExtractor = (index, field) => {
-        if (Array.isArray(row[TABLE_CELL][index][PARAGRAPH])) {
-          rowData[field] = getArrayElements(row[TABLE_CELL][index][PARAGRAPH]);
-        } else {
-          if (!Array.isArray(row[TABLE_CELL][index][PARAGRAPH][RUNE])) {
-            if (
-              typeof row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT] ===
-                "object" &&
-              row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"]
-            ) {
-              rowData[field] =
-                row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"];
             } else {
-              if (
-                typeof row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT] ===
-                "string"
-              ) {
-                rowData[field] = row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT];
-              } else {
-                rowData[field] =
-                  row[TABLE_CELL][index][PARAGRAPH][RUNE][TEXT]["_"];
-              }
+              rowData[field] = getArrayElements([row[TABLE_CELL][7][PARAGRAPH]]);
             }
-          } else {
-            rowData[field] = getArrayElements([row[TABLE_CELL][7][PARAGRAPH]]);
           }
+        };
+  
+        textExtractor(1, "stepName");
+        textExtractor(2, "shortQuestionText");
+        textExtractor(3, "title");
+        textExtractor(4, "screenText");
+        textExtractor(5, "stepType");
+        textExtractor(8, "branchingLogic");
+        textExtractor(9, "additionalDetails");
+  
+        if (!rowData.stepType.toLowerCase().includes("choice")) {
+          textExtractor(6, "answerValues");
+          textExtractor(7, "responseValues");
+        } else {
+          arrayExtractor(6, "answerValues");
+          arrayExtractor(7, "responseValues");
         }
-      };
-
-      textExtractor(1, "stepName");
-      textExtractor(2, "shortQuestionText");
-      textExtractor(3, "title");
-      textExtractor(4, "screenText");
-      textExtractor(5, "stepType");
-      textExtractor(8, "branchingLogic");
-      textExtractor(9, "additionalDetails");
-
-      if (!rowData.stepType.toLowerCase().includes("choice")) {
-        textExtractor(6, "answerValues");
-        textExtractor(7, "responseValues");
-      } else {
-        arrayExtractor(6, "answerValues");
-        arrayExtractor(7, "responseValues");
-      }
-      objectMapping.pages[count]= mappingToJson(rowData)
-      if(rowData.shortQuestionText !== "N/A" && rowData !== "Instruction")
-      {
-        objectMapping.pages[count].mappingKey = mappingKey.toString()
-        formStepsMapping.formSteps.push(createFormSteps(rowData, mappingKey.toString()))
-        mappingKey += 1
-      }
-      count +=1
-    });
-    JSON.stringify(objectMapping);
-    fs.writeFileSync(path.join(__dirname, "./", "spec", `${filePath}.json`),JSON.stringify(objectMapping, null, 2));
-    fs.writeFileSync(path.join(__dirname, "./", "spec", `${filePath}FormSteps.json`),JSON.stringify(formStepsMapping, null, 2));
+        objectMapping.pages[count]= mappingToJson(rowData)
+        if(rowData.shortQuestionText !== "N/A" && rowData !== "Instruction")
+        {
+          objectMapping.pages[count].mappingKey = mappingKey.toString()
+          formStepsMapping.formSteps.push(createFormSteps(rowData, mappingKey.toString()))
+          mappingKey += 1
+        }
+        count +=1
+      });
+      JSON.stringify(objectMapping);
+      fs.writeFileSync(path.join(directoryPath,doc.replace(".docx", ".json")),JSON.stringify(objectMapping, null, 2));
+      fs.writeFileSync(path.join(directoryPath, "formSteps"+ doc.replace(".docx", ".json")),JSON.stringify(objectMapping, null, 2));
+    })
   } catch (error) {
     console.error(error);
   }
