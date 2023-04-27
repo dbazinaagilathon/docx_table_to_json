@@ -1,9 +1,9 @@
 const fs = require("fs");
-const fsp = require("fs/promises");
 const JSZip = require("jszip");
 const { promisify } = require("util");
 const xml2js = require("xml2js");
 const path = require("path");
+const fsp = fs.promises;
 
 const readFileAsync = promisify(fs.readFile);
 const TABLE = "w:tbl";
@@ -22,8 +22,6 @@ const TEXT_CHOICE = "text_choice"
 const NUMERIC = "numeric"
 const buttonText = { next: "Next",edit: "edit",back: "Back",start: "Start" }
 const objectMapping = { title: "", reviewVerbiage: "", button: buttonText, pages: {} };
-const formStepsMapping = { formSteps: []}
-let mappingKey = 0
 
 async function findDocxFileInDirectory(directoryPath) {
   const files = await fsp.readdir(directoryPath);
@@ -45,8 +43,8 @@ async function convertDocxToJson(docxFilePath) {
 }
 function checkBoldOrUnderline(textContent, textContentBody)
 {
-  const underline = textContent[RUNPROP] && textContent[RUNPROP][UNDERLINE] && textContent[RUNPROP][UNDERLINE]["$"]&& textContent[RUNPROP][UNDERLINE]["$"][VALUE]=="single";
-  const bold = textContent[RUNPROP]&& textContent[RUNPROP].hasOwnProperty(BOLD)
+  const underline = textContent[RUNPROP]?.[UNDERLINE]?.["$"]?.[VALUE] === "single";
+  const bold = textContent[RUNPROP]?.[BOLD];
   let text = ""
   if(underline && bold){
     text+=  "<b><u>"+textContentBody+"</u></b>"
@@ -185,9 +183,11 @@ function mappingToJson(rowData)
     const directoryPath = path.join(__dirname, "./", "spec")
     const docxFilePath = await findDocxFileInDirectory(directoryPath);
     docxFilePath.forEach(async(doc)=>{
-      const json = await convertDocxToJson(path.join(directoryPath, doc));
-      const table = json[DOCUMENT][BODY][TABLE][0][TABLE_ROW];
+      const formStepsMapping = { formSteps: []}
+      let mappingKey = 0
       let count = 1
+      const json = await convertDocxToJson(path.join(directoryPath, doc));
+      const table = json[DOCUMENT][BODY][TABLE].length > 1 ? json[DOCUMENT][BODY][TABLE][0][TABLE_ROW] : json[DOCUMENT][BODY][TABLE][TABLE_ROW];
       table.slice(1).forEach((row) => {
         const rowData = {
           stepName: "",
@@ -272,8 +272,8 @@ function mappingToJson(rowData)
         textExtractor(3, "title");
         textExtractor(4, "screenText");
         textExtractor(5, "stepType");
-        textExtractor(8, "branchingLogic");
-        textExtractor(9, "additionalDetails");
+        // textExtractor(8, "branchingLogic");
+        // textExtractor(9, "additionalDetails");
   
         if (!rowData.stepType.toLowerCase().includes("choice")) {
           textExtractor(6, "answerValues");
@@ -302,6 +302,7 @@ function mappingToJson(rowData)
       JSON.stringify(objectMapping);
       fs.writeFileSync(path.join(directoryPath,doc.replace(".docx", ".json")),JSON.stringify(objectMapping, null, 2));
       fs.writeFileSync(path.join(directoryPath, "formSteps"+ doc.replace(".docx", ".json")),JSON.stringify(formStepsMapping, null, 2));
+      console.log("Finished "+doc)
     })
   } catch (error) {
     console.error(error);
