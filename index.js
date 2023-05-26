@@ -124,7 +124,7 @@ const getArrayElements = (arrayOfQuestionsOrAnswers) => {
     arrayOfQuestionsOrAnswers.forEach((textGroup) => {
       if (textGroup[RUNE]) {
         if (!Array.isArray(textGroup[RUNE])) {
-          array.push(textGroup[RUNE][TEXT]);
+          array.push(checkTextSource(textGroup[RUNE], false));
         } else {
           let addedText = "";
           textGroup[RUNE].forEach((textContent) => {
