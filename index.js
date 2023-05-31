@@ -297,7 +297,6 @@ const mappingToJson = (rowData, objectMapping) =>
         }
         count +=1
       });
-      JSON.stringify(objectMapping);
       fs.writeFileSync(path.join(directoryPath,doc.replace(".docx", ".json")),JSON.stringify(objectMapping, null, 2));
       fs.writeFileSync(path.join(directoryPath, "formSteps"+ doc.replace(".docx", ".json")),JSON.stringify(formStepsMapping, null, 2));
       console.log("Finished "+doc)
