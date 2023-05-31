@@ -53,10 +53,10 @@ const checkBoldOrUnderline = (textContent, textContentBody) => {
     text+=  "<b><u>"+textContentBody+"</u></b>"
   }
   else if(underline){
-    text+=  "<u>"+textContentBody+"<u/>"
+    text+=  "<u>"+textContentBody+"</u>"
   }
   else if(bold){
-    text+=  "<b>"+textContentBody+"<b/>"
+    text+=  "<b>"+textContentBody+"</b>"
   }
   else{
     text+=  textContentBody;
