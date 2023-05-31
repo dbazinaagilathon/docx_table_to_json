@@ -237,7 +237,7 @@ const mappingToJson = (rowData, objectMapping) =>
     return { title:rowData.title, copyright: rowData.stepName + " " + rowData.screenText }
   }
   else if (rowData.stepName.includes("Instruction")){
-    return { messages: rowData.screenText }
+    return { instructionalMessages: [rowData.screenText.split("<br/>")] }
   }
   else{
     return { mappingKey: "", question: rowData.screenText, answers: rowData.answerValues }
