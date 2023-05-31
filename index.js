@@ -17,6 +17,7 @@ const RUNE = "w:r";
 const TEXT = "w:t";
 const UNDERLINE = "w:u"
 const BOLD = "w:b"
+const ITALIC = "w:i"
 const RUNPROP = "w:rPr"
 const VALUE = "w:val"
 const DOCUMENT = "w:document"
@@ -47,21 +48,19 @@ async function convertDocxToJson(docxFilePath) {
 }
 const checkBoldOrUnderline = (textContent, textContentBody) => {
   const underline = textContent[RUNPROP]?.[UNDERLINE]?.["$"]?.[VALUE] === "single";
-  const bold = textContent[RUNPROP]?.[BOLD];
-  let text = ""
-  if(underline && bold){
-    text+=  "<b><u>"+textContentBody+"</u></b>"
+  const bold = textContent[RUNPROP]?.hasOwnProperty(BOLD);
+  const italic = textContent[RUNPROP]?.hasOwnProperty(ITALIC);
+  if(bold){
+    textContentBody=  "<b>"+textContentBody+"</b>"
   }
-  else if(underline){
-    text+=  "<u>"+textContentBody+"</u>"
+  if(italic){
+    textContentBody =  "<i>"+textContentBody+"</i>"
   }
-  else if(bold){
-    text+=  "<b>"+textContentBody+"</b>"
+  if(underline)
+  {
+    textContentBody=  "<u>"+textContentBody+"</u>"
   }
-  else{
-    text+=  textContentBody;
-  }
-  return text
+  return textContentBody
 }
 const checkTextSource = (textContent, checkStyle)=> {
   let text = ""
